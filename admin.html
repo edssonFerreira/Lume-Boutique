@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Lume Boutique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Administração</h1>
+        <nav><a class="link" href="index.html">Ver loja</a><button id="sair" class="link" hidden>Sair</button></nav>
+    </header>
+
+    <main>
+        <form id="login" class="painel">
+            <h2>Entrar na administração</h2>
+            <input id="email" type="email" placeholder="E-mail" required>
+            <input id="senha" type="password" placeholder="Senha" required>
+            <p id="msgLogin" class="msg"></p>
+            <button class="btn">Entrar</button>
+        </form>
+
+        <section id="painel" hidden>
+            <div class="topo"><h2>Produtos</h2><button id="novo" class="btn">Adicionar produto</button></div>
+            <div id="lista"></div>
+            <h2>Últimos pedidos</h2>
+            <div id="pedidos"></div>
+        </section>
+    </main>
+
+    <dialog id="dlg">
+        <form id="form">
+            <h2 id="tit">Novo produto</h2>
+            <label>Nome<input name="nome" required></label>
+            <label>Descrição<textarea name="descricao"></textarea></label>
+            <label>Preço (R$)<input name="preco" type="number" step="0.01" min="0" required></label>
+            <label>Categoria<input name="categoria" placeholder="Ex.: Tênis, Camisetas" required></label>
+            <label>Tamanhos (separe por vírgula)<input name="tamanhos" placeholder="P, M, G ou 38, 39, 40"></label>
+            <label>Foto<input name="foto" type="file" accept="image/*"></label>
+            <label class="check"><input name="ativo" type="checkbox" checked> Mostrar na loja</label>
+            <p id="msg" class="msg"></p>
+            <button class="btn">Salvar produto</button>
+            <button type="button" class="link" data-fechar>Cancelar</button>
+        </form>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

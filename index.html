@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lume Boutique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Lume Boutique</h1>
+        <nav>
+            <select id="filtro" aria-label="Categoria"><option value="">Todos os produtos</option></select>
+            <button id="btnConta" class="link">Entrar</button>
+            <button id="btnCarrinho" class="link">Carrinho (<span id="qtd">0</span>)</button>
+        </nav>
+    </header>
+
+    <main>
+        <p class="intro">Roupas, tênis e acessórios. Escolha o tamanho, monte o carrinho e envie o pedido pelo WhatsApp.</p>
+        <section id="vitrine" class="grid" aria-live="polite"><p>Carregando produtos...</p></section>
+    </main>
+
+    <dialog id="dlgConta">
+        <form id="formConta">
+            <h2 id="tituloConta">Entrar</h2>
+            <input id="nome" placeholder="Seu nome" hidden>
+            <input id="email" type="email" placeholder="E-mail" required>
+            <input id="senha" type="password" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required>
+            <p id="msgConta" class="msg"></p>
+            <button class="btn">Entrar</button>
+            <button type="button" id="trocaModo" class="link">Criar uma conta</button>
+            <button type="button" class="link" data-fechar>Fechar</button>
+        </form>
+    </dialog>
+
+    <dialog id="dlgCarrinho">
+        <h2>Seu carrinho</h2>
+        <div id="itens"></div>
+        <p class="total">Total: <b id="total">R$ 0,00</b></p>
+        <button id="btnEnviar" class="btn">Enviar pedido pelo WhatsApp</button>
+        <button class="link" data-fechar>Continuar comprando</button>
+    </dialog>
+
+    <footer>Lume Boutique - atendimento pelo WhatsApp</footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

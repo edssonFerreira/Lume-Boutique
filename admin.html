@@ -1,52 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administração - Lume Boutique</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080808">
+  <title>Administração | Lume Boutique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
-        <h1>Administração</h1>
-        <nav><a class="link" href="index.html">Ver loja</a><button id="sair" class="link" hidden>Sair</button></nav>
-    </header>
+<body class="admin-page">
+  <header class="site-header admin-header"><a class="brand" href="index.html"><span class="brand-mark">L</span><span>LUME<span class="brand-sub">PAINEL DA LOJA</span></span></a><nav class="header-actions"><a class="header-link" href="index.html">← Ver loja</a><button id="sair" class="header-link" type="button" hidden>Sair da conta</button></nav></header>
+  <main class="admin-main">
+    <form id="login" class="login-panel">
+      <div class="login-emblem">L</div><p class="eyebrow">ÁREA RESTRITA</p><h1>Administração<span>.</span></h1><p class="modal-intro">Entre com a conta autorizada para gerenciar os produtos e acompanhar os pedidos.</p>
+      <label class="field-label">E-mail<input id="email" type="email" autocomplete="username" placeholder="admin@email.com" required></label>
+      <label class="field-label">Senha<input id="senha" type="password" autocomplete="current-password" placeholder="Sua senha" required></label>
+      <p id="msgLogin" class="message" role="status" aria-live="polite"></p><button class="btn btn-primary btn-full" type="submit">Entrar no painel</button>
+      <p class="login-help">Apenas contas marcadas como administradoras no banco de dados têm acesso.</p>
+    </form>
 
-    <main>
-        <form id="login" class="painel">
-            <h2>Entrar na administração</h2>
-            <input id="email" type="email" placeholder="E-mail" required>
-            <input id="senha" type="password" placeholder="Senha" required>
-            <p id="msgLogin" class="msg"></p>
-            <button class="btn">Entrar</button>
-        </form>
-
-        <section id="painel" hidden>
-            <div class="topo"><h2>Produtos</h2><button id="novo" class="btn">Adicionar produto</button></div>
-            <div id="lista"></div>
-            <h2>Últimos pedidos</h2>
-            <div id="pedidos"></div>
-        </section>
-    </main>
-
-    <dialog id="dlg">
-        <form id="form">
-            <h2 id="tit">Novo produto</h2>
-            <label>Nome<input name="nome" required></label>
-            <label>Descrição<textarea name="descricao"></textarea></label>
-            <label>Preço (R$)<input name="preco" type="number" step="0.01" min="0" required></label>
-            <label>Categoria<input name="categoria" placeholder="Ex.: Tênis, Camisetas" required></label>
-            <label>Tamanhos (separe por vírgula)<input name="tamanhos" placeholder="P, M, G ou 38, 39, 40"></label>
-            <label>Foto<input name="foto" type="file" accept="image/*"></label>
-            <label class="check"><input name="ativo" type="checkbox" checked> Mostrar na loja</label>
-            <p id="msg" class="msg"></p>
-            <button class="btn">Salvar produto</button>
-            <button type="button" class="link" data-fechar>Cancelar</button>
-        </form>
-    </dialog>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/admin.js"></script>
+    <section id="painel" hidden>
+      <div class="admin-welcome"><div><p class="eyebrow">LUME BOUTIQUE / CONTROLE DA LOJA</p><h1>Olá, admin<span>.</span></h1><p>Gerencie seu catálogo de um jeito simples.</p></div><button id="novo" class="btn btn-primary" type="button"><span>＋</span> Adicionar produto</button></div>
+      <div class="admin-stats"><article><span>Produtos cadastrados</span><strong id="statProdutos">—</strong></article><article><span>Visíveis na loja</span><strong id="statAtivos">—</strong></article><article><span>Pedidos recentes</span><strong id="statPedidos">—</strong></article></div>
+      <section class="admin-section"><div class="admin-section-head"><div><p class="eyebrow">SEU CATÁLOGO</p><h2>Produtos</h2></div><label class="search-box admin-search"><span aria-hidden="true">⌕</span><input id="buscaAdmin" type="search" placeholder="Buscar produto..." aria-label="Buscar produto no painel"></label></div><div id="lista" class="admin-product-list"><p class="loading-state">Carregando produtos...</p></div></section>
+      <section class="admin-section"><div class="admin-section-head"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Últimos pedidos</h2></div><span class="orders-label">ATÉ 20 PEDIDOS</span></div><div id="pedidos" class="orders-list"><p class="loading-state">Carregando pedidos...</p></div></section>
+    </section>
+  </main>
+  <dialog id="dlg" class="modal admin-product-modal"><form id="form" class="modal-form">
+    <button type="button" class="modal-close" data-fechar aria-label="Fechar">×</button><p class="eyebrow">CATÁLOGO LUME</p><h2 id="tit">Novo produto<span>.</span></h2><p class="modal-intro">Preencha os campos abaixo. Os campos com * são obrigatórios.</p>
+    <label class="field-label">Nome do produto *<input name="nome" required maxlength="120" placeholder="Ex.: Tênis Street Classic"></label>
+    <label class="field-label">Descrição<textarea name="descricao" rows="3" maxlength="1000" placeholder="Conte um pouco sobre o produto"></textarea></label>
+    <div class="form-two-cols"><label class="field-label">Preço (R$) *<input name="preco" type="number" step="0.01" min="0.01" required placeholder="0,00"></label><label class="field-label">Categoria *<input name="categoria" required maxlength="60" placeholder="Tênis, Camisetas..."></label></div>
+    <label class="field-label">Tamanhos disponíveis<input name="tamanhos" maxlength="200" placeholder="P, M, G ou 38, 39, 40"><small>Separe os tamanhos por vírgula.</small></label>
+    <label class="field-label">Foto do produto<input name="foto" type="file" accept="image/png,image/jpeg,image/webp"><small>Use uma imagem JPG, PNG ou WebP de até 5 MB.</small></label>
+    <label class="check-field"><input name="ativo" type="checkbox" checked><span><strong>Mostrar na loja</strong><small>Desmarque para ocultar o produto sem apagá-lo.</small></span></label>
+    <p id="msg" class="message" role="status" aria-live="polite"></p><button class="btn btn-primary btn-full" type="submit">Salvar produto</button><button type="button" class="text-button" data-fechar>Cancelar</button>
+  </form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script><script src="js/config.js"></script><script src="js/admin.js"></script>
 </body>
 </html>

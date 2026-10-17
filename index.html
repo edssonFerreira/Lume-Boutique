@@ -1,50 +1,93 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lume Boutique</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Roupas, tênis e acessórios na Lume Boutique. Monte seu carrinho e faça seu pedido pelo WhatsApp.">
+  <title>Lume Boutique | Vista seu estilo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
-        <h1>Lume Boutique</h1>
-        <nav>
-            <select id="filtro" aria-label="Categoria"><option value="">Todos os produtos</option></select>
-            <button id="btnConta" class="link">Entrar</button>
-            <button id="btnCarrinho" class="link">Carrinho (<span id="qtd">0</span>)</button>
-        </nav>
-    </header>
+<body class="store-page">
+  <div class="announcement">SEU ESTILO, SUAS REGRAS <span>✦</span> PEDIDOS PELO WHATSAPP</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Lume Boutique, página inicial"><span class="brand-mark">L</span><span>LUME<span class="brand-sub">BOUTIQUE</span></span></a>
+    <nav class="header-actions" aria-label="Ações da loja">
+      <button id="btnConta" class="header-link" type="button">Entrar</button>
+      <button id="btnCarrinho" class="cart-button" type="button"><span class="cart-icon" aria-hidden="true">▱</span> Carrinho <span id="qtd" class="cart-count">0</span></button>
+    </nav>
+  </header>
 
-    <main>
-        <p class="intro">Roupas, tênis e acessórios. Escolha o tamanho, monte o carrinho e envie o pedido pelo WhatsApp.</p>
-        <section id="vitrine" class="grid" aria-live="polite"><p>Carregando produtos...</p></section>
-    </main>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> NOVA TEMPORADA</p>
+        <h1>Vista seu estilo.<br><em>Marque presença.</em></h1>
+        <p>Peças escolhidas para acompanhar você em cada momento. Encontre seu próximo favorito.</p>
+        <a class="btn hero-cta" href="#colecao">Explorar coleção <span aria-hidden="true">↘</span></a>
+        <div class="hero-note"><span class="hero-note-line"></span><span>Moda que combina com você.</span></div>
+      </div>
+      <div class="hero-art" aria-label="Destaque da coleção Lume">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-stamp">LUME<br><span>EST. 2024</span></div>
+        <div class="hero-caption"><span>01 / ESSENCIAIS</span><span>ATITUDE EM CADA DETALHE</span></div>
+      </div>
+    </section>
 
-    <dialog id="dlgConta">
-        <form id="formConta">
-            <h2 id="tituloConta">Entrar</h2>
-            <input id="nome" placeholder="Seu nome" hidden>
-            <input id="email" type="email" placeholder="E-mail" required>
-            <input id="senha" type="password" placeholder="Senha (mínimo 6 caracteres)" minlength="6" required>
-            <p id="msgConta" class="msg"></p>
-            <button class="btn">Entrar</button>
-            <button type="button" id="trocaModo" class="link">Criar uma conta</button>
-            <button type="button" class="link" data-fechar>Fechar</button>
-        </form>
-    </dialog>
+    <section id="colecao" class="collection-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">ESCOLHA O SEU PRÓXIMO LOOK</p><h2>Explore a coleção<span>.</span></h2></div>
+        <p class="section-side-note">Básicos nada básicos.<br>Seu estilo começa aqui.</p>
+      </div>
+      <div class="toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="busca" type="search" placeholder="Buscar produtos..." aria-label="Buscar produtos pelo nome ou descrição"></label>
+        <label class="filter-label"><span>Categoria</span><select id="filtro" aria-label="Filtrar por categoria"><option value="">Todas</option></select></label>
+        <label class="filter-label sort-label"><span>Ordenar</span><select id="ordenar" aria-label="Ordenar produtos"><option value="recentes">Mais recentes</option><option value="menor">Menor preço</option><option value="maior">Maior preço</option><option value="nome">Nome A–Z</option></select></label>
+      </div>
+      <div class="results-line"><span id="contadorProdutos">Carregando coleção...</span><span class="results-dot"></span><span>FEITO PARA VOCÊ</span></div>
+      <section id="vitrine" class="product-grid" aria-live="polite" aria-busy="true"><div class="loading-state">Preparando a coleção...</div></section>
+    </section>
 
-    <dialog id="dlgCarrinho">
-        <h2>Seu carrinho</h2>
-        <div id="itens"></div>
-        <p class="total">Total: <b id="total">R$ 0,00</b></p>
-        <button id="btnEnviar" class="btn">Enviar pedido pelo WhatsApp</button>
-        <button class="link" data-fechar>Continuar comprando</button>
-    </dialog>
+    <section class="service-strip" aria-label="Informações da loja">
+      <div><span class="service-icon">✦</span><p><strong>Seu estilo em primeiro lugar</strong><small>Seleção de peças para você</small></p></div>
+      <div><span class="service-icon">↗</span><p><strong>Pedido sem complicação</strong><small>Finalize pelo WhatsApp</small></p></div>
+      <div><span class="service-icon">♡</span><p><strong>Atendimento próximo</strong><small>Fale direto com a loja</small></p></div>
+    </section>
+  </main>
 
-    <footer>Lume Boutique - atendimento pelo WhatsApp</footer>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/script.js"></script>
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">L</span><span>LUME<span class="brand-sub">BOUTIQUE</span></span></a><p>Vista seu estilo. Marque presença.</p><span>© <span id="ano"></span> Lume Boutique</span></footer>
+
+  <dialog id="dlgConta" class="modal">
+    <form id="formConta" class="modal-form">
+      <button type="button" class="modal-close" data-fechar aria-label="Fechar">×</button>
+      <p class="eyebrow">BEM-VINDO À LUME</p><h2 id="tituloConta">Entre na sua conta<span>.</span></h2>
+      <p class="modal-intro">Acesse sua conta para acompanhar sua experiência na loja.</p>
+      <label id="nomeLabel" class="field-label" hidden>Seu nome<input id="nome" name="nome" autocomplete="name" placeholder="Como podemos te chamar?"></label>
+      <label class="field-label">E-mail<input id="email" name="email" type="email" autocomplete="email" placeholder="voce@email.com" required></label>
+      <label class="field-label">Senha<input id="senha" name="senha" type="password" autocomplete="current-password" placeholder="Mínimo de 6 caracteres" minlength="6" required></label>
+      <p id="msgConta" class="message" role="status" aria-live="polite"></p>
+      <button class="btn btn-primary btn-full" type="submit">Entrar</button>
+      <button type="button" id="trocaModo" class="text-button">Ainda não tem conta? Criar conta</button>
+    </form>
+  </dialog>
+
+  <dialog id="dlgCarrinho" class="modal cart-modal">
+    <div class="cart-modal-inner"><button type="button" class="modal-close" data-fechar aria-label="Fechar carrinho">×</button>
+      <p class="eyebrow">SUA SELEÇÃO</p><h2>Seu carrinho<span>.</span></h2><p class="modal-intro">Confira os itens antes de enviar seu pedido.</p>
+      <div id="itens" class="cart-items"></div>
+      <div class="cart-total"><span>Total do pedido</span><strong id="total">R$ 0,00</strong></div>
+      <p class="checkout-note">O pagamento e a entrega serão combinados diretamente com a loja.</p>
+      <button id="btnEnviar" class="btn btn-primary btn-full" type="button">Enviar pedido pelo WhatsApp <span>↗</span></button>
+      <button class="text-button" type="button" data-fechar>Continuar comprando</button>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
